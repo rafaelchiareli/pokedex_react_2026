@@ -3,12 +3,12 @@ import { prisma } from "../lib/prisma";
 import { revalidatePath } from "next/cache";
 import { buscarStatus } from "../lib/pokeapi";
 import { calcularPoder } from "../lib/batalha";
-import { redirect } from "next/dist/server/api-utils";
+import { redirect } from "next/navigation";
 // Salva um Pokémon no banco
 export async function capturar(formData) {
     const imagemShiny = formData.get("imagemShiny");
     //sorteio chances de 1 em 20%
-    const shiny = imagemShiny !== "" && Math.randon() < 1 / 20;
+    const shiny = imagemShiny !== "" && Math.random() < 1 / 20;
 
     await prisma.pokemon.create({
         data: {
@@ -65,6 +65,5 @@ export async function batalhar(formData) {
 
     }
     revalidatePath("/");
-    redirect(`/batalha?a=${idA}&b=${idB}&poderA=${poderA}&poderB=${poderB}`);
 
 };
