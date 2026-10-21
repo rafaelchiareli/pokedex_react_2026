@@ -20,3 +20,11 @@ favorito Boolean @default(false)
 shiny Boolean @default(false)
 vitorias Int @default(0)
 }
+
+ model Visto {
+  id Int @id @default(autoincrement())
+  pokeId Int @unique
+  nome String
+  imagem String
+  vezes Int @default(1)
+ }

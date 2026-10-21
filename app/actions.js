@@ -67,3 +67,25 @@ export async function batalhar(formData) {
     revalidatePath("/");
 
 };
+
+//solta todos os pokemons que não são favoritos
+export async function soltarNaoFavoritos() {
+    const resultado = await prisma.pokemon.deleteMany({
+        where : {favorito: false},
+    });
+
+    revalidatePath("/");
+    redirect(`/estatisticas?soldos=${resultado.count}`);
+
+}
+
+//reseta as vitorias de todos os pokemons
+export async function zerarRanking(){
+
+    const resultado = await prisma.pokemon.updateMany({
+        data: {vitorias: 0}
+    });
+    revalidatePath("/");
+    redirect(`/estatisticas?zerados=${resultado.count}`);
+}
+

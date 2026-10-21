@@ -1,7 +1,7 @@
 import { prisma } from "../lib/prisma";
 import { buscarPokemon, buscarPorInicio } from "../lib/pokeapi";
 import Link from 'next/link'
-
+import { registrarVisto } from "../lib/vistos";
 import BuscaForm from "./components /BuscaForm";
 import MinhaPokedex from "./components /MinhaPokedex";
 import PokemonEncontrado from "./components /PokemonEncontrado";
@@ -14,6 +14,7 @@ export default async function Home({ searchParams }) {
 
   // busca os pokemons pelo nome ou pelo texto  na api
   const encontrado = nome ? await buscarPokemon(nome) : null;
+  if (encontrado) await registrarVisto(encontrado);
   const sugetoes = nome ? await buscarPorInicio(nome) : [];
 
   // 2. Busca no nosso banco todos os Pokémon capturados
