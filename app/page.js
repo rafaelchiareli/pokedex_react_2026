@@ -26,6 +26,7 @@ export default async function Home({ searchParams }) {
     <main>
       <h1>Minha Pokédex</h1>
       <Link href={"/batalha"} className='botao-link'>Ir para a batalha</Link>
+      <Link href={"/estatisticas"} className="botao-link">Estatisticas</Link>
       <BuscaForm />
       {nome && !encontrado && sugetoes.length === 0 && (
         <p className="erro">Não achamos nenhum Pokémon com nome comçando com {nome}.</p>

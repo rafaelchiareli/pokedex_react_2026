@@ -134,3 +134,15 @@ button {
 .erro {
     color: #d62f2f;
 }
+
+.botao-link{
+    margin-right: 8px;
+}
+
+.aviso{
+    background: #eaf8ee;
+    color: #d62f2f;
+    padding: 10px;
+    border-radius: 6px;
+
+}
